@@ -1,6 +1,12 @@
+using IpMan.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+var dbConnectionString = Environment.GetEnvironmentVariable("IPMAN_DB") ?? "Host=localhost;Database=IpMan;Username=!;Password=!";
+builder.Services.AddDbContext<ServerDbContext>(o => o.UseNpgsql(dbConnectionString, options => options.EnableRetryOnFailure()));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
