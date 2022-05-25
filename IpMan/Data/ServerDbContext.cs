@@ -1,3 +1,4 @@
+#nullable disable
 using IpMan.Models;
 using Microsoft.EntityFrameworkCore;
 

@@ -12,10 +12,10 @@ public class Building
     public Guid Id { get; private set; }
 
     [MaxLength(100)]
-    public string Name { get; private set; }
+    public string Name { get; private set; } = null!;
 
     [MaxLength(100)]
-    public string AddressLine1 { get; private set; }
+    public string AddressLine1 { get; private set; } = null!;
     [MaxLength(100)]
     public string? AddressLine2 { get; private set; }
 }

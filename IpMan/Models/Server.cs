@@ -11,11 +11,11 @@ public class Server
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; private set; }
-    public IPAddress Ip { get; private set; }
+    public IPAddress Ip { get; private set; } = null!;
 
     public Guid RackSpaceId { get; private set; }
-    public RackSpace RackSpace { get; private set; }
+    public RackSpace RackSpace { get; private set; } = null!;
 
     public Guid AdministratorId { get; private set; }
-    public Administrator Administrator { get; private set; }
+    public Administrator Administrator { get; private set; } = null!;
 }

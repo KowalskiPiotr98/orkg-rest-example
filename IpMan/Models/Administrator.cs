@@ -9,10 +9,10 @@ public class Administrator
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; private set; }
     [MaxLength(100)]
-    public string FirstName { get; private set; }
+    public string FirstName { get; private set; } = null!;
     [MaxLength(100)]
-    public string LastName { get; private set; }
+    public string LastName { get; private set; } = null!;
     [MaxLength(100)]
     [DataType(DataType.EmailAddress)]
-    public string EmailAddress { get; private set; }
+    public string EmailAddress { get; private set; } = null!;
 }
