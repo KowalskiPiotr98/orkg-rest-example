@@ -10,6 +10,7 @@ var dbConnectionString = Environment.GetEnvironmentVariable("IPMAN_DB") ?? "Host
 builder.Services.AddDbContext<ServerDbContext>(o => o.UseNpgsql(dbConnectionString, options => options.EnableRetryOnFailure()));
 
 builder.Services.AddScoped<BuildingsRepository>();
+builder.Services.AddScoped<RackSpaceRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
