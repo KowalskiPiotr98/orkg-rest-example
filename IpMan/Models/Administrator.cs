@@ -15,4 +15,20 @@ public class Administrator
     [MaxLength(100)]
     [DataType(DataType.EmailAddress)]
     public string EmailAddress { get; private set; } = null!;
+
+    public Administrator()
+    {
+    }
+
+    public Administrator(string firstName, string lastName, string email)
+    {
+        SetPersonalData(firstName, lastName, email);
+    }
+
+    public void SetPersonalData(string firstName, string lastName, string email)
+    {
+        FirstName = firstName;
+        LastName = lastName;
+        EmailAddress = email;
+    }
 }
