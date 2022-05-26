@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Net;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 namespace IpMan.Models;
@@ -11,6 +12,7 @@ public class Server
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; private set; }
+    [JsonConverter(typeof(IpAddressJsonConverter))]
     public IPAddress Ip { get; private set; } = null!;
 
     public Guid RackSpaceId { get; private set; }
@@ -23,11 +25,11 @@ public class Server
     {
     }
 
-    public Server(IPAddress ip, RackSpace rackSpace, Administrator administrator)
+    public Server(IPAddress ip, Guid rackSpaceId, Guid administratorId)
     {
         AssignIp(ip);
-        AssignRackSpace(rackSpace);
-        AssignAdministrator(administrator);
+        AssignRackSpace(rackSpaceId);
+        AssignAdministrator(administratorId);
     }
 
     public void AssignIp(IPAddress ipAddress) => Ip = ipAddress;
