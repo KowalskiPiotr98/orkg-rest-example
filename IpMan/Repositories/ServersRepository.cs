@@ -13,7 +13,7 @@ public class ServersRepository
         _context = context;
     }
 
-    public IQueryable<Server> GetServers => _context.Servers;
+    public IQueryable<Server> GetServers() => _context.Servers;
 
     public async Task<Server?> GetServer(Guid id, CancellationToken cancellationToken = default)
     {

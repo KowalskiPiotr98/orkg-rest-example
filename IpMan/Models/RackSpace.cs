@@ -22,9 +22,9 @@ public class RackSpace
     {
     }
 
-    public RackSpace(Building building, string room, int rack, int row)
+    public RackSpace(Guid buildingId, string room, int rack, int row)
     {
-        SetBuilding(building);
+        SetBuilding(buildingId);
         SetLocationInBuilding(room, rack, row);
     }
 
