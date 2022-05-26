@@ -1,4 +1,3 @@
-using Humanizer.Inflections;
 using IpMan.Data;
 using IpMan.Models;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +12,8 @@ public class BuildingsRepository
     {
         _context = context;
     }
+
+    public IQueryable<Building> GetBuildings() => _context.Buildings;
 
     public async Task<Building?> GetBuilding(Guid id, CancellationToken cancellationToken = default)
     {

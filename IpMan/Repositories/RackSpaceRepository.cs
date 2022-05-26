@@ -13,6 +13,8 @@ public class RackSpaceRepository
         _context = context;
     }
 
+    public IQueryable<RackSpace> GetRackSpaces() => _context.RackSpaces;
+
     public async Task<RackSpace?> GetRackSpace(Guid id, CancellationToken cancellationToken = default)
     {
         return await _context.RackSpaces.AsNoTracking().Include(r => r.Building).FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
