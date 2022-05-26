@@ -11,6 +11,7 @@ builder.Services.AddDbContext<ServerDbContext>(o => o.UseNpgsql(dbConnectionStri
 
 builder.Services.AddScoped<BuildingsRepository>();
 builder.Services.AddScoped<RackSpaceRepository>();
+builder.Services.AddScoped<AdministratorsRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
