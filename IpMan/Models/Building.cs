@@ -18,4 +18,25 @@ public class Building
     public string AddressLine1 { get; private set; } = null!;
     [MaxLength(100)]
     public string? AddressLine2 { get; private set; }
+
+    public Building()
+    {
+    }
+
+    public Building(string name, string addressLine1, string? addressLine2 = null)
+    {
+        Rename(name);
+        ChangeAddress(addressLine1, addressLine2);
+    }
+
+    public void Rename(string name)
+    {
+        Name = name;
+    }
+
+    public void ChangeAddress(string addressLine1, string? addressLine2 = null)
+    {
+        AddressLine1 = addressLine1;
+        AddressLine2 = addressLine2;
+    }
 }
