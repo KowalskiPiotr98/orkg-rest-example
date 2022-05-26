@@ -17,4 +17,29 @@ public class RackSpace
 
     public Guid BuildingId { get; private set; }
     public Building Building { get; private set; } = null!;
+
+    public RackSpace()
+    {
+    }
+
+    public RackSpace(Building building, string room, int rack, int row)
+    {
+        SetBuilding(building);
+        SetLocationInBuilding(room, rack, row);
+    }
+
+    public void SetLocationInBuilding(string room, int rack, int row)
+    {
+        Room = room;
+        ServerRack = rack;
+        RackRow = row;
+    }
+
+    public void SetBuilding(Building building)
+    {
+        SetBuilding(building.Id);
+        Building = building;
+    }
+
+    public void SetBuilding(Guid buildingId) => BuildingId = buildingId;
 }
