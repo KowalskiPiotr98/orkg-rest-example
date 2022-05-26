@@ -18,4 +18,31 @@ public class Server
 
     public Guid AdministratorId { get; private set; }
     public Administrator Administrator { get; private set; } = null!;
+
+    public Server()
+    {
+    }
+
+    public Server(IPAddress ip, RackSpace rackSpace, Administrator administrator)
+    {
+        AssignIp(ip);
+        AssignRackSpace(rackSpace);
+        AssignAdministrator(administrator);
+    }
+
+    public void AssignIp(IPAddress ipAddress) => Ip = ipAddress;
+
+    public void AssignRackSpace(Guid rackSpaceId) => RackSpaceId = rackSpaceId;
+    public void AssignRackSpace(RackSpace rackSpace)
+    {
+        RackSpace = rackSpace;
+        AssignRackSpace(rackSpace.Id);
+    }
+
+    public void AssignAdministrator(Guid adminId) => AdministratorId = adminId;
+    public void AssignAdministrator(Administrator admin)
+    {
+        Administrator = admin;
+        AssignAdministrator(admin.Id);
+    }
 }
