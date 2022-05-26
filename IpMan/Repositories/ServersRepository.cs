@@ -13,6 +13,8 @@ public class ServersRepository
         _context = context;
     }
 
+    public IQueryable<Server> GetServers => _context.Servers;
+
     public async Task<Server?> GetServer(Guid id, CancellationToken cancellationToken = default)
     {
         return await _context.Servers.Include(s => s.Administrator).Include(s => s.RackSpace).ThenInclude(r => r.Building).AsNoTracking().FirstOrDefaultAsync(b => b.Id == id, cancellationToken);

@@ -13,6 +13,8 @@ public class AdministratorsRepository
         _context = context;
     }
 
+    public IQueryable<Administrator> GetAdministrators() => _context.Administrators;
+
     public async Task<Administrator?> GetAdministrator(Guid id, CancellationToken cancellationToken = default)
     {
         return await _context.Administrators.AsNoTracking().FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
