@@ -1,1 +1,1 @@
-# orkd-rest-example
+# orkg-rest-example
