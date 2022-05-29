@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./data:/var/lib/postgresql/data
+  ipman:
+    image: ipman:latest
+    depends_on:
+      - postgres
+    build:
+      context: ..
+      dockerfile: IpMan/Dockerfile
+    ports:
+      - "127.0.0.1:80:80"
+    environment:
+      IPMAN_DB: "Host=postgres;Database=IpMan;Username=postgres;Password=postgres"
