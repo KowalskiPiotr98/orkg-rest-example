@@ -17,6 +17,9 @@ public class ServersController : ControllerBase
         _repository = repository;
     }
 
+    /// <summary>
+    /// List all servers
+    /// </summary>
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<IEnumerable<Server>>> GetServers(CancellationToken cancellationToken)
@@ -24,6 +27,10 @@ public class ServersController : ControllerBase
         return await _repository.GetServers().ToListAsync(cancellationToken);
     }
 
+    /// <summary>
+    /// Get detailed information about a server
+    /// </summary>
+    /// <param name="serverId">ID of a server</param>
     [HttpGet("{serverId:guid}")]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -34,6 +41,10 @@ public class ServersController : ControllerBase
         return server is null ? NotFound() : server;
     }
 
+    /// <summary>
+    /// Create a new server
+    /// </summary>
+    /// <response code="400">Model is invalid or server with this IP already exists.</response>
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status201Created)]
@@ -53,6 +64,12 @@ public class ServersController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Create or update a server
+    /// </summary>
+    /// <response code="400">Model is invalid or server with this IP already exists.</response>
+    /// <response code="200">Server was updated.</response>
+    /// <response code="201">Server was not found, so a new one was created.</response>
     [HttpPut("{serverId:Guid}")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -82,6 +99,9 @@ public class ServersController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Delete a server
+    /// </summary>
     [HttpDelete("{serverId:guid}")]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status200OK)]

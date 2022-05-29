@@ -17,6 +17,9 @@ public class AdministratorsController : ControllerBase
         _repository = repository;
     }
 
+    /// <summary>
+    /// List all administrators
+    /// </summary>
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<IEnumerable<Administrator>>> GetAdministrators(CancellationToken cancellationToken)
@@ -24,6 +27,10 @@ public class AdministratorsController : ControllerBase
         return await _repository.GetAdministrators().ToListAsync(cancellationToken);
     }
 
+    /// <summary>
+    /// Get detailed information about an administrator
+    /// </summary>
+    /// <param name="administratorId">ID of an administrator</param>
     [HttpGet("{administratorId:guid}")]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -34,6 +41,10 @@ public class AdministratorsController : ControllerBase
         return administrator is null ? NotFound() : administrator;
     }
 
+    /// <summary>
+    /// Create a new administrator
+    /// </summary>
+    /// <response code="400">Model is invalid.</response>
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status201Created)]
@@ -53,6 +64,12 @@ public class AdministratorsController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Create or update an administrator
+    /// </summary>
+    /// <response code="400">Model is invalid.</response>
+    /// <response code="200">Administrator was updated.</response>
+    /// <response code="201">Administrator was not found, so a new one was created.</response>
     [HttpPut("{administratorId:Guid}")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -80,6 +97,9 @@ public class AdministratorsController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Delete a server
+    /// </summary>
     [HttpDelete("{administratorId:guid}")]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status200OK)]

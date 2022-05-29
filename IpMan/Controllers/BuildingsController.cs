@@ -17,6 +17,9 @@ public class BuildingsController : ControllerBase
         _repository = repository;
     }
 
+    /// <summary>
+    /// List all buildings
+    /// </summary>
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<IEnumerable<Building>>> GetBuildings(CancellationToken cancellationToken)
@@ -24,6 +27,10 @@ public class BuildingsController : ControllerBase
         return await _repository.GetBuildings().ToListAsync(cancellationToken);
     }
 
+    /// <summary>
+    /// Get detailed information about a building
+    /// </summary>
+    /// <param name="buildingId">ID of a building</param>
     [HttpGet("{buildingId:guid}")]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -34,6 +41,10 @@ public class BuildingsController : ControllerBase
         return building is null ? NotFound() : building;
     }
 
+    /// <summary>
+    /// Create a new building
+    /// </summary>
+    /// <response code="400">Model is invalid or building with this name already exists.</response>
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status201Created)]
@@ -53,6 +64,12 @@ public class BuildingsController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Create or update a building
+    /// </summary>
+    /// <response code="400">Model is invalid or building with this name already exists.</response>
+    /// <response code="200">Building was updated.</response>
+    /// <response code="201">Building was not found, so a new one was created.</response>
     [HttpPut("{buildingId:Guid}")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -81,6 +98,9 @@ public class BuildingsController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Delete a building
+    /// </summary>
     [HttpDelete("{buildingId:guid}")]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status200OK)]

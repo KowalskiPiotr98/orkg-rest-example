@@ -17,6 +17,9 @@ public class RackSpacesController : ControllerBase
         _repository = repository;
     }
 
+    /// <summary>
+    /// List all rack spaces
+    /// </summary>
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<IEnumerable<RackSpace>>> GetRackSpaces(CancellationToken cancellationToken)
@@ -24,6 +27,10 @@ public class RackSpacesController : ControllerBase
         return await _repository.GetRackSpaces().ToListAsync(cancellationToken);
     }
 
+    /// <summary>
+    /// Get detailed information about a rack space
+    /// </summary>
+    /// <param name="rackSpaceId">ID of a rack space</param>
     [HttpGet("{rackSpaceId:guid}")]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -34,6 +41,10 @@ public class RackSpacesController : ControllerBase
         return rackSpace is null ? NotFound() : rackSpace;
     }
 
+    /// <summary>
+    /// Create a new rack space
+    /// </summary>
+    /// <response code="400">Model is invalid.</response>
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status201Created)]
@@ -53,6 +64,12 @@ public class RackSpacesController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Create or update a rack space
+    /// </summary>
+    /// <response code="400">Model is invalid.</response>
+    /// <response code="200">Rack space was updated.</response>
+    /// <response code="201">Rack space was not found, so a new one was created.</response>
     [HttpPut("{rackSpaceId:Guid}")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -81,6 +98,9 @@ public class RackSpacesController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Delete a rack space
+    /// </summary>
     [HttpDelete("{rackSpaceId:guid}")]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status200OK)]
