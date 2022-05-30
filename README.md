@@ -1,1 +1,0 @@
-# orkg-rest-example
